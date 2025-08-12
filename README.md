@@ -7,9 +7,9 @@ This is where I store all my solved problems, learning notes, and implementation
 
 ## 📂 Folder Structure
 DSA/
-├── DSA 1/ # Basic problems & fundamental concepts
-├── DSA 2/ # Intermediate problems & algorithms
-├── DSA 3/ # Advanced problems & optimizations
+├── DSA 1/ # Array, String, LinkedList & Search Algorithms
+├── DSA 2/ # Stack, Queue, HashTable and Sorting Algorithms
+├── DSA 3/ # Tree, Trie, BST, Heap, HeapSort and Graphs
 
 
 ---
