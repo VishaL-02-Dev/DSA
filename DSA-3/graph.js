@@ -54,7 +54,31 @@ class GraphList {
         this.adjacencyList[ver2].add(ver1);
     }
 
-    
+    removeVertex(vertex){
+        if(!this.adjacencyList[vertex]){
+            return;
+        }
+        for(let adjacentVertex of this.adjacencyList[vertex]){
+            this.removeEdge(vertex,adjacentVertex);
+        }
+        delete this.adjacencyList[vertex];
+    }
+
+    removeEdge(vertex1, vertex2){
+        this.adjacencyList[vertex1].delete(vertex2);
+        this.adjacencyList[vertex2].delete(vertex1);
+    }
+
+    hasEdge(vertex1, vertex2){
+        return this.adjacencyList[vertex1].has(vertex2) &&
+        this.adjacencyList[vertex2].has(vertex1);
+    }
+
+    display(){
+        for(let vertex in this.adjacencyList){
+            console.log(vertex + '->' + [...this.adjacencyList[vertex]])
+        }
+    }
 }
 
 const graph = new GraphList();
@@ -63,3 +87,7 @@ graph.addVer('B');
 graph.addVer('C');
 graph.addEd('A','B');
 graph.addEd('B','C');
+// graph.display();
+// console.log(graph.hasEdge('A','C'));
+graph.removeVertex('B');
+graph.display();
