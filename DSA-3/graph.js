@@ -1,3 +1,4 @@
+// Adjacency List
 class Graph {
     constructor() {
         this.adjacencyList = {};
@@ -29,3 +30,36 @@ class Graph {
         delete this.adjacencyList[vertex];
     }
 }
+
+// Adjacency list Graph
+class GraphList {
+    constructor(){
+        this.adjacencyList = {};
+    }
+
+    addVer(vertex){
+        if(!this.adjacencyList[vertex]){
+            this.adjacencyList[vertex]=new Set();
+        }
+    }
+
+    addEd(ver1, ver2){
+        if(this.adjacencyList[ver1]){
+            this.addVer(ver1);
+        }
+        if(this.adjacencyList[ver2]){
+            this.addVer(ver2);
+        }
+        this.adjacencyList[ver1].add(ver2);
+        this.adjacencyList[ver2].add(ver1);
+    }
+
+    
+}
+
+const graph = new GraphList();
+graph.addVer('A');
+graph.addVer('B');
+graph.addVer('C');
+graph.addEd('A','B');
+graph.addEd('B','C');
