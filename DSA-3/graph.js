@@ -108,14 +108,54 @@ class GraphL{
             console.log(`${vertex} -> ${[...this.adjList[vertex]]}`)
         }
     }
+
+    bfs(start){
+        if(!this.adjList[start]) return [];
+
+        const visited = new Set();
+        const order = [];
+        const queue = [start];
+        let head = 0;
+
+        visited.add(start);
+
+        while(head<queue.length){
+            const node= queue[head++];
+            console.log(node);
+            order.push(node);
+
+            for(const neighbor of this.adjList[node]){
+                if(!visited.has(neighbor)){
+                    visited.add(neighbor);
+                    queue.push(neighbor);
+                }
+            }
+        }
+        return order;
+    }
+
+    dfs(node, visited = new Set(), order=[]){
+        if(!node ||visited.has(node)) return;
+        visited.add(node);
+        order.push(node);
+
+        for(let neighbor of this.adjList.get(node)){
+            this.dfs(neighbor, visited, order);
+        }
+
+        return order;
+    }
 }
 
 const gL = new GraphL();
 gL.addVertex('A');
 gL.addVertex('B');
-gL.addEdge('C','D');
+gL.addEdge('A','B');
 gL.addEdge('A','C');
+gL.addEdge('B','E')
+gL.addEdge('B','D')
 // gL.removeEdge('C','D');
 // gL.removeVertex('C')
-console.log(gL.neighbors('A'));
-gL.print();
+// console.log(gL.neighbors('A'));
+console.log(gL.bfs('A'));
+// gL.print();
