@@ -1,63 +1,63 @@
-// Adjacency list Graph
-class GraphList {
-    constructor(){
-        this.adjacencyList = {};
-    }
+// // Adjacency list Graph
+// class GraphList {
+//     constructor(){
+//         this.adjacencyList = {};
+//     }
 
-    addVer(vertex){
-        if(!this.adjacencyList[vertex]){
-            this.adjacencyList[vertex]=new Set();
-        }
-    }
+//     addVer(vertex){
+//         if(!this.adjacencyList[vertex]){
+//             this.adjacencyList[vertex]=new Set();
+//         }
+//     }
 
-    addEd(ver1, ver2){
-        if(this.adjacencyList[ver1]){
-            this.addVer(ver1);
-        }
-        if(this.adjacencyList[ver2]){
-            this.addVer(ver2);
-        }
-        this.adjacencyList[ver1].add(ver2);
-        this.adjacencyList[ver2].add(ver1);
-    }
+//     addEd(ver1, ver2){
+//         if(this.adjacencyList[ver1]){
+//             this.addVer(ver1);
+//         }
+//         if(this.adjacencyList[ver2]){
+//             this.addVer(ver2);
+//         }
+//         this.adjacencyList[ver1].add(ver2);
+//         this.adjacencyList[ver2].add(ver1);
+//     }
 
-    removeVertex(vertex){
-        if(!this.adjacencyList[vertex]){
-            return;
-        }
-        for(let adjacentVertex of this.adjacencyList[vertex]){
-            this.removeEdge(vertex,adjacentVertex);
-        }
-        delete this.adjacencyList[vertex];
-    }
+//     removeVertex(vertex){
+//         if(!this.adjacencyList[vertex]){
+//             return;
+//         }
+//         for(let adjacentVertex of this.adjacencyList[vertex]){
+//             this.removeEdge(vertex,adjacentVertex);
+//         }
+//         delete this.adjacencyList[vertex];
+//     }
 
-    removeEdge(vertex1, vertex2){
-        this.adjacencyList[vertex1].delete(vertex2);
-        this.adjacencyList[vertex2].delete(vertex1);
-    }
+//     removeEdge(vertex1, vertex2){
+//         this.adjacencyList[vertex1].delete(vertex2);
+//         this.adjacencyList[vertex2].delete(vertex1);
+//     }
 
-    hasEdge(vertex1, vertex2){
-        return this.adjacencyList[vertex1].has(vertex2) &&
-        this.adjacencyList[vertex2].has(vertex1);
-    }
+//     hasEdge(vertex1, vertex2){
+//         return this.adjacencyList[vertex1].has(vertex2) &&
+//         this.adjacencyList[vertex2].has(vertex1);
+//     }
 
-    display(){
-        for(let vertex in this.adjacencyList){
-            console.log(vertex + '->' + [...this.adjacencyList[vertex]])
-        }
-    }
-}
+//     display(){
+//         for(let vertex in this.adjacencyList){
+//             console.log(vertex + '->' + [...this.adjacencyList[vertex]])
+//         }
+//     }
+// }
 
-const graph = new GraphList();
-graph.addVer('A');
-graph.addVer('B');
-graph.addVer('C');
-graph.addEd('A','B');
-graph.addEd('B','C');
+// const graph = new GraphList();
+// graph.addVer('A');
+// graph.addVer('B');
+// graph.addVer('C');
+// graph.addEd('A','B');
+// graph.addEd('B','C');
+// // graph.display();
+// // console.log(graph.hasEdge('A','C'));
+// graph.removeVertex('B');
 // graph.display();
-// console.log(graph.hasEdge('A','C'));
-graph.removeVertex('B');
-graph.display();
 
 // Adjacency List 
 class GraphL{
@@ -95,6 +95,14 @@ class GraphL{
         delete this.adjList[v];
     }
 
+    hasEdge(v1,v2){
+        return this.adjList[v1].has(v2) && this.adjList[v2].has(v1);
+    }
+
+    neighbors(v){
+        return this.adjList[v] ? [...this.adjList[v]] : [];
+    }
+
     print(){
         for(let vertex in this.adjList){
             console.log(`${vertex} -> ${[...this.adjList[vertex]]}`)
@@ -106,6 +114,8 @@ const gL = new GraphL();
 gL.addVertex('A');
 gL.addVertex('B');
 gL.addEdge('C','D');
+gL.addEdge('A','C');
 // gL.removeEdge('C','D');
-gL.removeVertex('C')
+// gL.removeVertex('C')
+console.log(gL.neighbors('A'));
 gL.print();
