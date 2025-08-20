@@ -1,36 +1,3 @@
-// Adjacency List
-class Graph {
-    constructor() {
-        this.adjacencyList = {};
-    }
-
-    addVertex(vertex) {
-        if (!this.adjacencyList[vertex]) {
-            this.adjacencyList[vertex] = [];
-        }
-    }
-
-    addEdge(vertex1, vertex2) {
-        if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
-            this.adjacencyList[vertex1].push(vertex2);
-            this.adjacencyList[vertex2].push(vertex1); // remove for directed graph
-        }
-    }
-
-    removeEdge(vertex1, vertex2) {
-        this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2);
-        this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1);
-    }
-
-    removeVertex(vertex) {
-        while (this.adjacencyList[vertex]) {
-            const adjacentVertex = this.adjacencyList[vertex].pop();
-            this.removeEdge(vertex, adjacentVertex);
-        }
-        delete this.adjacencyList[vertex];
-    }
-}
-
 // Adjacency list Graph
 class GraphList {
     constructor(){
@@ -91,3 +58,54 @@ graph.addEd('B','C');
 // console.log(graph.hasEdge('A','C'));
 graph.removeVertex('B');
 graph.display();
+
+// Adjacency List 
+class GraphL{
+    constructor(){
+        this.adjList = {};
+    }
+
+    addVertex(v){
+        if(!this.adjList[v]){
+            this.adjList[v]=new Set();
+        }
+    }
+
+    addEdge(v1,v2){
+        if(!this.adjList[v1]){
+            this.addVertex(v1);
+        }
+        if(!this.adjList[v2]){  
+            this.addVertex(v2)
+        }
+        this.adjList[v1].add(v2);
+        this.adjList[v2].add(v1);
+    }
+
+    removeEdge(v1,v2){
+        this.adjList[v1].delete(v2);
+        this.adjList[v2].delete(v1);
+    }
+
+    removeVertex(v){
+        if(!this.adjList[v]) return `No such vertex`;
+        for(let vertex of this.adjList[v]){
+            this.removeEdge(vertex, v);
+        }
+        delete this.adjList[v];
+    }
+
+    print(){
+        for(let vertex in this.adjList){
+            console.log(`${vertex} -> ${[...this.adjList[vertex]]}`)
+        }
+    }
+}
+
+const gL = new GraphL();
+gL.addVertex('A');
+gL.addVertex('B');
+gL.addEdge('C','D');
+// gL.removeEdge('C','D');
+gL.removeVertex('C')
+gL.print();
