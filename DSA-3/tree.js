@@ -77,7 +77,7 @@ class BinarySearchTree{
             if(root.right === null){
                 root.right = node;
             }else{
-                this.#insertNode(this.rigth, node);
+                this.#insertNode(this.right, node);
             }
         }
         console.log('Value inserted')
@@ -153,17 +153,17 @@ class BinarySearchTree{
     }
 
     delete(val){
-        this.root = this.deleteNode(this.root,val);
+        this.root = this.#deleteNode(this.root,val);
     }
     
-    deleteNode(root, val){
+    #deleteNode(root, val){
         if(root === null){
             return root;
         }
         if(val<root.val){
-            root.left = this.deleteNode(root.left, val)
+            root.left = this.#deleteNode(root.left, val)
         }else if(val>root.val){
-            root.right = this.deleteNode(root.right, val);
+            root.right = this.#deleteNode(root.right, val);
         }else {
             if(!root.left && root.right){
                 return null;
@@ -174,7 +174,7 @@ class BinarySearchTree{
                 return root.left;
             }
             root.val = this.min(root.right);
-            root.right = this.deleteNode(root.right, val)
+            root.right = this.#deleteNode(root.right, val)
         }
         return root;
     }
