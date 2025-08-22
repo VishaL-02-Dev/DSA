@@ -138,8 +138,9 @@ class GraphL{
         if(!node ||visited.has(node)) return;
         visited.add(node);
         order.push(node);
+        console.log(node);
 
-        for(let neighbor of this.adjList.get(node)){
+        for(let neighbor of this.adjList[node]){
             this.dfs(neighbor, visited, order);
         }
 
@@ -154,8 +155,10 @@ gL.addEdge('A','B');
 gL.addEdge('A','C');
 gL.addEdge('B','E')
 gL.addEdge('B','D')
+// gL.addEdge('C','G');
 // gL.removeEdge('C','D');
 // gL.removeVertex('C')
 // console.log(gL.neighbors('A'));
-console.log(gL.bfs('A'));
+// console.log(gL.bfs('A'));
+console.log(gL.dfs('A'));
 // gL.print();
