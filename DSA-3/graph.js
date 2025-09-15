@@ -161,4 +161,5 @@ gL.addEdge('B','D')
 // console.log(gL.neighbors('A'));
 // console.log(gL.bfs('A'));
 console.log(gL.dfs('A'));
+// console.log(gL.bfs('A'));
 // gL.print();

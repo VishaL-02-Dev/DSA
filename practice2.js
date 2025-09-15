@@ -111,7 +111,7 @@
 //     heapifyDown(){
 //         let index = 0;
 //         while(
-//             this.getLeftChildIndex(index) < this.heap.length.length
+//             this.getLeftChildIndex(index) < this.heap.length
 //         ){
 //             let smallerChild = this.getLeftChildIndex(index);
 //             if(

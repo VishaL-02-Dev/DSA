@@ -175,6 +175,9 @@ class BST{
         let count = 0;
         let result =null;
 
+        reverseInorder(this.root);
+        return result;
+
         function reverseInorder(node){
             if(!node || result !== null) return;
 
@@ -187,9 +190,6 @@ class BST{
             }
             reverseInorder(node.left);
         }
-
-        reverseInorder(this.root);
-        return result;
     }
 
     leafCount(node = this.root){

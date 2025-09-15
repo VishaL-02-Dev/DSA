@@ -154,6 +154,7 @@ class BinarySearchTree{
 
     delete(val){
         this.root = this.#deleteNode(this.root,val);
+        return `Value deleted`;
     }
     
     #deleteNode(root, val){
