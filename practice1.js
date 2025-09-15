@@ -105,6 +105,13 @@ class BST{
         }
     }
 
+    search(node,val){
+        if(!node) return false;
+        if(node.val === val) return true;
+        if(val<node.val) return this.search(node.left, val);
+        else return this.search(node.right, val);
+    }
+
     height(node =this.root){
         if(!node) return -1;
         return 1 + Math.max(this.height(node.left), this.height(node.right));
@@ -149,7 +156,7 @@ class BST{
         }
     }
 
-    levelOrder(){                         // BFS
+    levelOrder(){            // BFS
         const queue =[];
         queue.push(this.root);
         while(queue.length){
@@ -191,6 +198,26 @@ class BST{
         return this.leafCount(node.left) + this.leafCount(node.right);
     }
 
+    findMin(node){
+        while(node.left !== null){
+            node = node.left;
+        }
+        return node.val;
+    }
+
+    findMax(node){
+        while(node.right !==null){
+            node=node.right;
+        }
+        return node.val;
+    }
+
+    isValid(root, min=-Infinity, max=+Infinity){
+        if(!root) return true;
+        if(root.val<=min || root.val >= max) return false;
+        return this.isValid(root.left, min, root.val) && this.isValid(root.right, root.val, max);
+    }
+
 }
 const bst = new BST();
 bst.insert(50);
@@ -200,8 +227,16 @@ bst.insert(55);
 bst.insert(70);
 bst.insert(65);
 bst.insert(75);
-bst.levelOrder();
-console.log('3rd Largest:',bst.kthLargest(3));
-console.log('Height of tree:',bst.height());
-console.log('Depth of 65:',bst.depth(65));
-console.log('Leaf nodes:',bst.leafCount());
+// bst.levelOrder();
+// console.log('3rd Largest:',bst.kthLargest(3));
+// console.log('Height of tree:',bst.height());
+// console.log('Depth of 65:',bst.depth(65));
+// console.log('Leaf nodes:',bst.leafCount());
+// console.log(bst.search(bst.root,71));
+// console.log(bst.findMax(bst.root));
+// console.log(bst.findMin(bst.root));
+// console.log(bst.isValid(bst.root));
+console.log(bst.search(bst.root,99));
+// console.log('DFS:',bst.DFS());
+// console.group('BFS',bst.BFS());
+console.log(bst.height());
